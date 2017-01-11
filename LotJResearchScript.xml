@@ -187,11 +187,15 @@ else
 colorThree = masterColor
 end
 
-ColourTell("white", "black", "\t[ ")
+a = string.len("%1" .. "%2")
+b = string.len("%3" .. "%4")
+
+--ColourTell("black", "black", CreateSpacer(5,0,""))
+ColourTell("white", "black", " [ ")
 Hyperlink("readd %1", "%1 %2\%", "Add to Queue", colorOne, "black", false)
-ColourTell("white", "black"," ]\t[ ")
+ColourTell("white", "black"," ]".. CreateSpacer(26-a, 0, "") .."[ ")
 Hyperlink("readd %3", "%3 %4\%", "Add to Queue" ,colorTwo, "black", false)
-ColourTell("white", "black"," ]\t[ ")
+ColourTell("white", "black"," ]".. CreateSpacer(26-b, 0, "") .."[ ")
 Hyperlink("readd %5", "%5 %6\%", "Add to Queue" ,colorThree, "black", false)
 ColourTell("white", "black"," ]")
 Note("")</send>
@@ -238,9 +242,11 @@ else
 colorTwo = masterColor
 end
 
-ColourTell("white", "black", "\t[ ")
+a = string.len("%1" .. "%2")
+
+ColourTell("white", "black", " [ ")
 Hyperlink("readd %1", "%1 %2\%", "Add to Queue", colorOne, "black", false)
-ColourTell("white", "black"," ]\t[ ")
+ColourTell("white", "black"," ]".. CreateSpacer(26-a, 0, "") .."[ ")
 Hyperlink("readd %3", "%3 %4\%", "Add to Queue" ,colorTwo, "black", false)
 ColourTell("white", "black", " ]")
 Note("")</send>
@@ -276,7 +282,7 @@ else
 colorOne = masterColor
 end
 
-ColourTell("white", "black", "\t[ ")
+ColourTell("white", "black", " [ ")
 Hyperlink("readd %1", "%1 %2\%", "Add to Queue", colorOne, "black", false)
 ColourTell("white", "black", " ]")
 Note("")</send>
@@ -633,6 +639,16 @@ for i, v in ipairs(researchQueue) do
 			end -- if
 		end -- if
 	end -- for
+end -- function
+
+function CreateSpacer(n, i, s)
+	if i < n then
+		a = s .. " "
+		return CreateSpacer(n, i+1, a)
+	else
+		return s
+	end -- if
+	return s
 end -- function
 
 function researchHelp(name, line, wildcards)
