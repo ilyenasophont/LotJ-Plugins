@@ -484,6 +484,7 @@ function ReturnFromAFK(name, line, wildcards)
 	if (endurance == true) then
 		EnableEndurance()
 	else
+		EnableTimer("KeepGoing", true)
 		BuildShip()
 	end -- if
 end -- function
