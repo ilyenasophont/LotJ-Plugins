@@ -69,7 +69,8 @@ Use buildhelp to see the commands
    send_to="12"
    sequence="100"
   >
-  <send>EnableTimer("EnduranceMode", false)</send>
+  <send>EnableTimer("EnduranceMode", false)
+EnableTimer("KeepGoing", false)</send>
   </trigger>
   <trigger
    group="Antitheft"
@@ -178,7 +179,7 @@ Use buildhelp to see the commands
   <trigger
    enabled="y"
    group="Shipbuilding"
-   match="^Your (.*) doesnt need any more of that\.$"
+   match="^Your (.*) doesn\'t need any more of that\.$"
    name="MoveOnToNextPart"
    regexp="y"
    script="MoveOntoNextPart"
@@ -188,6 +189,7 @@ Use buildhelp to see the commands
 </send>
   </trigger>
   <trigger
+   enabled="y"
    group="Shipbuilding"
    match="You finish modifying the ship."
    name="ContinueTheShip"
@@ -363,6 +365,7 @@ ColourNote("green", "", "Ship Building Botting On")</send>
   <send>EnableTrigger("ShipBotting", false)
 EnableTrigger("CopyoverCoverage", false)
 EnableTrigger("CopyoverProtection", false)
+EnableTimer("KeepGoing", false)
 ColourNote("red", "", "Ship Building Botting Off")</send>
   </alias>
 </aliases>
@@ -371,6 +374,9 @@ ColourNote("red", "", "Ship Building Botting Off")</send>
 
 <timers>
   <timer name="EnduranceMode" script="BuildShip" enabled="n" second="5.40" offset_second="0.00" group="Shipbuilding" >
+
+  </timer>
+  <timer name="KeepGoing" script="BuildShip" enabled="n" second="10.00" offset_second="0.00" group="Shipbuilding" >
 
   </timer>
 </timers>
@@ -412,11 +418,11 @@ function BeginBuilding(name, line, wildcards)
 	for i, v in ipairs(partNames) do
 		Send("drop all." .. partNames[i])
 	end -- for
+	EnableTimer("KeepGoing", true)
 	BuildShip()
 end -- function
 
 function BuildShip(name, line, wildcards)
-	
 	if (shipQueue[1] ~= nil) then
 		shipName = shipQueue[1]
 	end -- if
@@ -425,7 +431,9 @@ function BuildShip(name, line, wildcards)
 		--	Send("drop all." .. partNames[i])
 		--end -- for
 		Send("buildship " .. shipName .. " " .. shipParts[currentPart])
+		ResetTimer("KeepGoing")
 	else
+		EnableTimer("KeepGoing", false)
 		Note("Building Finished!")
 	end -- if
 end -- function

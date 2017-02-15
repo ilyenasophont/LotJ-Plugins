@@ -188,7 +188,7 @@ NOTE: If you disable the script halfway-through, you will need to reinitialise i
 <!--  Timers  -->
 
 <timers>
-  <timer name="EngageHyperdrive" second="30.00" offset_second="0.00" group="Autotravel" >
+  <timer name="EngageHyperdrive" second="5.00" offset_second="0.00" group="Autotravel" >
   <send>hyperspace</send>
 
   </timer>
