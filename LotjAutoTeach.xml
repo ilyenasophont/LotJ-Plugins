@@ -173,6 +173,22 @@
   >
   </alias>
   <alias
+   name="AddCombatSkillsToList"
+   script="AddCombatSkillsToList"
+   match="teachcombat"
+   enabled="y"
+   group="Teaching"
+   sequence="100"
+  >
+  <alias
+   name="AddLeadershipSkillsToList"
+   script="AddLeadershipSkillsToList"
+   match="teachleadership"
+   enabled="y"
+   group="Teaching"
+   sequence="100"
+  >
+  <alias
    name="TeachBegin"
    script="TeachSkill"
    match="teach"
@@ -213,6 +229,8 @@
 <script>
 <![CDATA[
 scienceList = {"advanced electronics", "chemistry", "construction", "data", "destruction", "edibles", "education", "electronics","enhancement","equipment","forensics","guidance","machines","medical","minerals","narcotics","spacecraft", "study", "transportation"}
+combatList = {"throw", "blasters", "vibro-blades", "scan", "kick", "mount", "grenades", "force pikes", "bowcasters", "rescue", "snipe", "advanced vibroblade", "advanced blaster", "advanced forcepike", "bash", "second attack", "advanced bowcaster", "dodge", "disarm", "dual wield", "gouge", "berserk", "enhanced damage", "mines", "grip", "unarmed combat", "hitall", "blaster mastery", "forcepike mastery", "aim", "bowcaster mastery", "blastdoor", "flurry"}
+leadershipList = {}
 teachList = {}
 teachTarget = ""
 teachFinished = true
@@ -244,6 +262,30 @@ function AddSciencesToList(name, line, wildcards)
 			table.insert(teachList, scienceList[i]) -- Make subsequent entries
 		end -- if
 	end -- for	
+end -- function
+
+function AddCombatSkillsToList(name, line, wildcards)
+    ColourNote("lime", "black", "- ALL COMBAT SKILLS ADDED TO LIST")
+    for i, v in ipairs(combatList) do
+        if (#teachList == 0) then
+            table.insert(teachList, 1, combatList[i]) -- Make first entry
+            teachFinished = false
+        else
+            table.insert(teachList, combatList[i]) -- Make subsequent entries
+        end -- if
+    end -- for
+end -- function
+
+function AddLeadershipSkillsToList(name, line, wildcards)
+    ColourNote("lime", "black", "- ALL LEADERSHIP SKILLS ADDED TO LIST")
+    for i, v in ipairs(leadershipList) do
+        if (#teachList == 0) then
+            table.insert(teachList, 1, leadershipList[i]) -- Make first entry
+            teachFinished = false
+        else
+            table.insert(teachList, leadershipList[i]) -- Make subsequent entries
+        end -- if
+    end -- for
 end -- function
 
 function ClearTeachList(name, line, wildcards)
@@ -358,17 +400,18 @@ function TeachStop(name, line, wildcards)
 end -- function
 
 function ShowCommands(name, line, wildcards)
-	ColourNote("grey", "black", "---AutoTeacher by @Ilyena---")
-	ColourNote("grey", "black","'teachtarget #' - Set the target to be taught.")
-	ColourNote("grey", "black","'teachshow' - Display which target is to be taught.")
-	ColourNote("grey", "black","'teachadd #' - Add an item to the teach queue.")
-	ColourNote("grey", "black","'teachlist' - Display the teaching queue.")
-	ColourNote("grey", "black","'teachscience' - Adds all the sciences to the teaching queue.")
-	ColourNote("grey", "black","'teachclear' - Clear the teach queue.")
-	ColourNote("grey", "black","'teachstop' - Stop the teaching queue.")
-	ColourNote("grey", "black","'teachauto (on/off/standby)' - Toggle. Set auto accept to accept, deny or standby.")
-end -- function
-]]>
+    ColourNote("grey", "black", "---AutoTeacher by @Ilyena---")
+    ColourNote("grey", "black","'teachtarget #' - Set the target to be taught.")
+    ColourNote("grey", "black","'teachshow' - Display which target is to be taught.")
+    ColourNote("grey", "black","'teachadd #' - Add an item to the teach queue.")
+    ColourNote("grey", "black","'teachlist' - Display the teaching queue.")
+    ColourNote("grey", "black","'teachscience' - Adds all the sciences to the teaching queue.")
+    ColourNote("grey", "black","'teachcombat' - Adds all the combat skills to the teaching queue.")
+    ColourNote("grey", "black","'teachleadership' - Adds all the leadership skills to the teaching queue.")
+    ColourNote("grey", "black","'teachclear' - Clear the teach queue.")
+    ColourNote("grey", "black","'teachstop' - Stop the teaching queue.")
+    ColourNote("grey", "black","'teachauto (on/off/standby)' - Toggle. Set auto accept to accept, deny or standby.")
+end -- function]]>
 </script>
 
 
