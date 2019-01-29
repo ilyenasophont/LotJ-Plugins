@@ -230,7 +230,7 @@
 <![CDATA[
 scienceList = {"advanced electronics", "chemistry", "construction", "data", "destruction", "edibles", "education", "electronics","enhancement","equipment","forensics","guidance","machines","medical","minerals","narcotics","spacecraft", "study", "transportation"}
 combatList = {"throw", "blasters", "vibro-blades", "scan", "kick", "mount", "grenades", "force pikes", "bowcasters", "rescue", "snipe", "advanced vibroblade", "advanced blaster", "advanced forcepike", "bash", "second attack", "advanced bowcaster", "dodge", "disarm", "dual wield", "gouge", "berserk", "enhanced damage", "mines", "grip", "unarmed combat", "hitall", "blaster mastery", "forcepike mastery", "aim", "bowcaster mastery", "blastdoor", "flurry"}
-leadershipList = {}
+leadershipList = {"call", "research", "teach", "smalltalk", "bribe", "broadcast", "propaganda"}
 teachList = {}
 teachTarget = ""
 teachFinished = true
