@@ -180,6 +180,7 @@
    group="Teaching"
    sequence="100"
   >
+  </alias>
   <alias
    name="AddLeadershipSkillsToList"
    script="AddLeadershipSkillsToList"
@@ -188,6 +189,7 @@
    group="Teaching"
    sequence="100"
   >
+  </alias>
   <alias
    name="TeachBegin"
    script="TeachSkill"
